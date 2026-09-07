@@ -1,0 +1,62 @@
+<div class="instr">
+  <h1>23-Word BIP39 Dice Seed</h1>
+  <p class="sub">Generate 23 seed words with 5 dice, read straight from the tables.</p>
+
+  <div class="sec">
+    <h2>What you need</h2>
+    <ul>
+      <li><b>5 identical dice</b> (<b>precision dice</b> preferred, machined for even weight).</li>
+      <li><b>A shoe box</b>. Its walls protect the dice from chipping and form an edge that fixes their order. <i>No box? Stand a book open and let them line up in the V of the spine, or fold a card into a narrow trough.</i></li>
+      <li><b>The 6 printed table sheets</b> that follow, and a <b>pen</b>.</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <h2>Make each word (repeat 23 times)</h2>
+    <ol>
+      <li><b>Roll:</b> shake the dice in the box thoroughly, then tilt so they slide into one corner and line up. Read left to right: <b>1st, 2nd, 3rd</b>, etc.</li>
+      <li><b>Re-roll check:</b> if the <b>1st die</b> is a 5 or 6 and the <b>2nd die</b> is also a 5 or 6, re-roll all five. Go back to step 1.</li>
+      <li><b>Re-roll check:</b> if the <b>3rd die</b> is a 5 or 6 and the <b>4th die</b> is also a 5 or 6, re-roll all five. Go back to step 1.</li>
+      <li><b>Find your page:</b> it is determined by your <b>1st die</b>, e.g. &ldquo;1st die = 4&rdquo;.</li>
+      <li><b>Find your row:</b> in the two left columns, go to your <b>2nd die</b> (&darr;), then your <b>3rd die</b> (&darr;).</li>
+      <li><b>Find your column:</b> your <b>4th die</b> (&rarr;), across the top (1-6).</li>
+      <li><b>Read the cell:</b> it holds two words; your <b>5th die</b> picks which (1-3 &rarr; top, 4-6 &rarr; bottom):
+        <div class="cellline">
+          <div class="cellmock">
+            <div class="wtop"><span class="el">1-3</span><span class="w">{{ example.top }}</span></div>
+            <div class="wbot"><span class="el">4-6</span><span class="w">{{ example.bot }}</span></div>
+          </div>
+        </div>
+      </li>
+      <li><b>Write the word</b> on its next numbered line (1 to 23), in the order rolled. The order is part of your seed, so never sort or rearrange.</li>
+    </ol>
+    <div class="stepgap"></div>
+  </div>
+
+  <div class="sec box">
+    <h2>Worked example</h2>
+    <div class="roll">Dice land: 1st={{ example.die1 }} &nbsp; 2nd={{ example.die2 }} &nbsp; 3rd={{ example.die3 }} &nbsp; 4th={{ example.die4 }} &nbsp; 5th={{ example.die5 }}</div>
+    <ul>
+      <li>Re-roll check: 1st &amp; 2nd = {{ example.die1 }},{{ example.die2 }} ok &middot; 3rd &amp; 4th = {{ example.die3 }},{{ example.die4 }} ok &rarr; keep. <i>(a 5 &amp; 6 pair would fail &rarr; re-roll)</i></li>
+      <li>Page: <b>1st die = {{ example.die1 }}</b>.</li>
+      <li>Row: 2nd die {{ example.die2 }}, 3rd die {{ example.die3 }}. &nbsp; Column: 4th die {{ example.die4 }}.</li>
+      <li>5th die = {{ example.die5 }} &rarr; top word &rarr; write <b>{{ example.top }}</b>.</li>
+    </ul>
+  </div>
+
+  <div class="sec caution">
+    <h2>Two rules that protect your seed</h2>
+    <ul>
+      <li><b>Position only.</b> Decide each die's role by <i>where it sits</i> (1st..5th), never by the number it shows.</li>
+      <li><b>Never fudge a re-roll.</b> If you land on RE-ROLL, re-roll all five. Never re-roll a throw you have already accepted, and never move a die or swap faces, to dodge a word you dislike or a repeat. Repeated words are normal and expected; keep what the dice give. Re-rolling or rearranging after seeing the faces is what biases the result.</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <h2>Finishing the seed</h2>
+    <p>After 23 words, enter them into a hardware wallet or air-gapped signer (for example SeedSigner or Blockstream Jade) to get the <b>24th word</b>. <b>Never type them into an everyday phone or laptop.</b> The result is a standard 24-word seed with <b>253 bits</b> of dice entropy.</p>
+  </div>
+
+  <div class="tfoot">The 6 tables use the official BIP39 English wordlist (SHA-256 2f5eed&hellip;3b24dbda), read directly.</div>
+
+</div>

@@ -1,0 +1,41 @@
+<div class="tbanner">
+  <span class="big">1st die = {{ sheet.page }}</span>
+  <span class="sub">table {{ sheet.page }} of 6 &middot; 23-Word BIP39 Dice Seed</span>
+</div>
+<table>
+  <colgroup>
+    <col class="ci"><col class="ci"><col><col><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="corner" colspan="2"></th>
+      <th class="grouph" colspan="6">4th die&nbsp;<span class="ar">&rarr;</span></th>
+    </tr>
+    <tr>
+      <th class="idx"><span class="dl">2nd</span><br><span class="ar">&darr;</span></th>
+      <th class="idx"><span class="dl">3rd</span><br><span class="ar">&darr;</span></th>
+      {% for die4 in columns %}
+      <th class="colh">{{ die4 }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in sheet.rows %}
+    <tr class="{{ row.css_class }}">
+      <td class="idx">{{ row.die2 }}</td>
+      <td class="idx">{{ row.die3 }}</td>
+      {% if row.full_reroll %}
+      <td class="reroll" colspan="6">RE-ROLL</td>
+      {% else %}
+      {% for cell in row.cells %}
+      {% if cell.reroll %}
+      <td class="reroll">RE-ROLL</td>
+      {% else %}
+      <td class="wc"><div class="wtop"><span class="el">1-3</span><span class="w">{{ cell.top }}</span></div><div class="wbot"><span class="el">4-6</span><span class="w">{{ cell.bot }}</span></div></td>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

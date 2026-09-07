@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate HTML from source
+        run: uv run python generate_dice_tables.py
+      - name: Fail if regenerated HTML differs from committed
+        run: git diff --exit-code -- dice_tables.html
+      - name: Lint
+        run: uv run ruff check .
+      - name: Test
+        run: uv run pytest -q
+      - name: Audit
+        run: uv run python audit_dice_tables.py
